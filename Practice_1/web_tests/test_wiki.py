@@ -49,13 +49,9 @@ class Wiki_tester():
                 By.XPATH, '/html/head/link[11]').get_attribute('href')
             # decode '/%D0%A0%D0%BE%D1%81%D1%81%D1%83%D0%BC' to 'Россум'
             link = unquote(link)
-            if link == final_link:
-                logger.success(
-                    f'[+] Link "{link}" is found for search query "{final_link}" on Wikipedia; test passed')
-            else:
-                logger.error(
-                    f'[!] Link "{link}" is not found for search query "{final_link}" on Wikipedia; test failed')
-
+            assert link == final_link
+            logger.success(
+                f'[+] Link "{link}" is found for search query "{final_link}" on Wikipedia; test passed')
         except Exception as e:
             logger.error(f'[!] Error while trying to find link "{link}": {e}')
 
@@ -80,6 +76,8 @@ class Wiki_tester():
                 # find link in rel = "canonical" tag and catch href attribute
                 link = self.driver.find_element(
                     By.XPATH, '/html/head/link[11]').get_attribute('href')
+                assert link
+
                 # decode '/%D0%A0%D0%BE%D1%81%D1%81%D1%83%D0%BC' to 'Россум'
                 link = unquote(link)
                 logger.success(
@@ -90,8 +88,7 @@ class Wiki_tester():
 
 
 if __name__ == '__main__':
-    from utils import setup_logger
-    setup_logger()
+
     # create instance of Tester class
     tester = Wiki_tester()
     tester.search_on_wiki('heap sort')

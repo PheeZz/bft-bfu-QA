@@ -1,11 +1,10 @@
 from loguru import logger
-
-import undetected_chromedriver
-from selenium.webdriver.common.by import By
-from urllib.parse import unquote
 import time
 from os import getenv
 from dotenv import load_dotenv
+
+import undetected_chromedriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 

@@ -1,4 +1,4 @@
-from web_tests import Wiki_tester, Stackoverflow_tester
+from web_tests import Wiki_tester, Stackoverflow_tester, YouTube_tester
 from utils import setup_logger
 
 if __name__ == '__main__':
@@ -9,3 +9,5 @@ if __name__ == '__main__':
     stackoverflow_tester = Stackoverflow_tester()
     stackoverflow_tester.login_site()
     stackoverflow_tester.logout_site()
+
+    YouTube_tester().search_on_yt('Rick Astley')

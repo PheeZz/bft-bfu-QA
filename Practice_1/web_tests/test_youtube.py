@@ -2,14 +2,13 @@ from loguru import logger
 
 import undetected_chromedriver
 from selenium.webdriver.common.by import By
-from urllib.parse import unquote
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 import time
 
 
-class Yt_tester():
+class YouTube_tester():
     def __init__(self) -> None:
         self.driver = undetected_chromedriver.Chrome()
         logger.info('[+] Driver is ready')
@@ -106,9 +105,13 @@ class Yt_tester():
         if video_title:
             self._check_video_title(video_title)
 
+    def __del__(self):
+        self.driver.quit()
+        logger.info('[+] Driver is closed')
+
 
 if __name__ == '__main__':
-    yt_tester = Yt_tester()
+    yt_tester = YouTube_tester()
     yt_tester.search_on_yt(
         search_query='Rick Astley',
         video_title='Rick Astley - Never Gonna Give You Up')

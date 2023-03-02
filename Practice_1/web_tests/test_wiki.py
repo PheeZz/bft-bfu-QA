@@ -86,6 +86,10 @@ class Wiki_tester():
                 logger.error(
                     f'[!] Error while trying to find link for search query "{search_query}" on Wikipedia: {e}')
 
+    def __del__(self):
+        self.driver.quit()
+        logger.info('[+] Driver is closed')
+
 
 if __name__ == '__main__':
 

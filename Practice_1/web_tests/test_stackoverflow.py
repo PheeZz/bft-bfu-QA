@@ -79,11 +79,12 @@ class Stackoverflow_tester():
 
         try:
             # find a tag with href ending with 'inbox'
-            assert self.driver.find_element(
-                By.XPATH, '//a[contains(@href, "inbox")]')
+            assert WebDriverWait(self.driver, 5).until(
+                EC.presence_of_element_located((By.XPATH, '//a[contains(@href, "inbox")]')))
+
             # find a tag with href ending with 'users/logout'
-            assert self.driver.find_element(
-                By.XPATH, '//a[contains(@href, "users/logout")]')
+            assert WebDriverWait(self.driver, 5).until(
+                EC.presence_of_element_located((By.XPATH, '//a[contains(@href, "users/logout")]')))
 
             logger.success('[+] User is logged in')
 
@@ -128,6 +129,10 @@ class Stackoverflow_tester():
         self._find_logout_link()
         self._approve_logout()
         self._check_logout()
+
+    def __del__(self):
+        self.driver.quit()
+        logger.info('[+] Driver is closed')
 
 
 if '__main__' == __name__:

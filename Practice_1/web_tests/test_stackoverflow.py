@@ -6,7 +6,8 @@ from urllib.parse import unquote
 import time
 from os import getenv
 from dotenv import load_dotenv
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class Stackoverflow_tester():
@@ -39,6 +40,9 @@ class Stackoverflow_tester():
 
     def _input_login(self) -> None:
         try:
+            # sleep driver for 2 seconds
+            time.sleep(2)
+
             login_field = self.driver.find_element(
                 By.ID, 'email')
             login_field.send_keys(self.LOGIN)
@@ -101,11 +105,10 @@ class Stackoverflow_tester():
     def _approve_logout(self) -> None:
         try:
             time.sleep(2)
-            # find a button with class 's-btn__primary', element <button>
-            logout_button = self.driver.find_element(
-                By.XPATH, '//button[contains(@class, "s-btn__primary")]')
+            # find a button with text inside 'Log out', element <button>
+            logout_button = WebDriverWait(self.driver, 5).until(
+                EC.element_to_be_clickable((By.XPATH, '//button[contains(text(), "Log out")]')))
             assert logout_button
-            self.driver.implicitly_wait(5)
             logout_button.click()
             logger.info('[+] Logout button is pressed')
 

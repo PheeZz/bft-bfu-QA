@@ -105,6 +105,8 @@ class YouTube_tester():
         if video_title:
             self._check_video_title(video_title)
 
+        self.driver.quit()
+
     def __del__(self):
         self.driver.quit()
         logger.info('[+] Driver is closed')

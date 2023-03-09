@@ -130,6 +130,8 @@ class Stackoverflow_tester():
         self._approve_logout()
         self._check_logout()
 
+        self.driver.quit()
+
     def __del__(self):
         self.driver.quit()
         logger.info('[+] Driver is closed')

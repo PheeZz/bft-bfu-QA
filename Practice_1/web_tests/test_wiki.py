@@ -88,9 +88,6 @@ class Wiki_tester():
 
         self.driver.quit()
 
-    def __del__(self):
-        self.driver.quit()
-        logger.info('[+] Driver is closed')
 
 
 if __name__ == '__main__':

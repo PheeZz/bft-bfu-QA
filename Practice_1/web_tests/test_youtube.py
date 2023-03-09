@@ -83,7 +83,7 @@ class YouTube_tester():
 
             if 'Rick Astley' in title or 'Never Gonna Give You Up' in title:
                 logger.warning(
-                    f'[!] You are successfully Rickrolled!')
+                    '[!] You are successfully Rickrolled!')
                 time.sleep(5)
 
         except Exception as e:
@@ -106,10 +106,6 @@ class YouTube_tester():
             self._check_video_title(video_title)
 
         self.driver.quit()
-
-    def __del__(self):
-        self.driver.quit()
-        logger.info('[+] Driver is closed')
 
 
 if __name__ == '__main__':
